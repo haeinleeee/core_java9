@@ -1,0 +1,14 @@
+* volatile, atomic, sychronize의 차이점
+https://stackoverflow.com/questions/9749746/what-is-the-difference-between-atomic-volatile-synchronized
+
+  * volatile 
+    - 모든 읽기 쓰기 연산을 메인 메모리에서만 처리된다.
+    - 하나의 스레드가 쓰기 연산을 하고, 다른 스레드에서는 읽기 연산을 통해 최신 값을 가져올 경우. 즉 다른 스레드에서는 업데이트를 행하지 않을 경우 이용할 수 있다.
+    - The only side effect of volatile is "flushing" caches so that all other parties see the freshest version of the data. 
+    This is too strict in most situations; that is why volatile is not default.
+  * Atomic~
+    - CAS란 특정 메모리 위치의 값이 주어진 값을 비교하여 같으면 새로운 값으로 대체된다.
+    - 클래스의 경우는 여러 스레드에서 읽기 쓰기 모두 이용할 수 있다. (CAS = compare-and-swap)
+  * synchronized 
+    - 하나의 스레드가 lock을 얻어 수행이 끝날때까지 다른 스레드들은 lock 풀릴때까지 대기하게 된다.
+    - 여러 스레드에서 읽기 쓰기 모두 이용할 수 있다. (Lock)
